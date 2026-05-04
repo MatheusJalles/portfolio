@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- ================================================
+     PORTFÓLIO — MATHEUS JALLES
+     Desenvolvedor Front-End | BH, Brasil
+     Última atualização: 2026
+================================================ -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Matheus Jalles — Dev Front-End em evolução para Full Stack | JavaScript · Python · React Native | ADS — PUC Minas">
+  <meta property="og:title" content="Matheus Jalles — Dev Front-End">
+  <meta property="og:description" content="Interfaces funcionais, bem estruturadas e pensadas a partir da lógica.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Matheus Jalles</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Canvas de fundo: partículas animadas pelo script.js -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ================================================
+       LIGHTBOX — Visualizador de imagem em tela cheia
+       Abre ao clicar em qualquer imagem dos projetos.
+       Controlado pelo script.js.
+       ESC fecha. Setas navegam entre imagens.
+  ================================================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem">
+    <button class="lightbox-fechar" id="lightbox-fechar" aria-label="Fechar">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Anterior">‹</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Visualização ampliada">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Próxima">›</button>
+    <div class="lightbox-contador" id="lightbox-contador"></div>
+  </div>
+
+  <!-- Header fixo no topo -->
+  <header>
+    <a href="#inicio" class="logo">MJ</a>
+    <nav>
+      <a href="#sobre">sobre</a>
+      <a href="#projetos">projetos</a>
+      <a href="#stack">stack</a>
+      <a href="#contato">contato</a>
+    </nav>
+    <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="header-cta">LinkedIn ↗</a>
+  </header>
+
+  <main>
+
+    <!-- ============================================
+         SEÇÃO 0 — HERO
+    ============================================ -->
+    <section class="hero" id="inicio">
+
+      <div class="hero-inner reveal">
+        <div class="hero-meta">
+          <span class="dot"></span>
+          <span>Belo Horizonte, BR</span>
+          <span class="sep">·</span>
+          <span>Aberto a oportunidades</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line-1">Matheus</span>
+          <span class="line-2">Jalles<em>.</em></span>
+        </h1>
+
+        <p class="hero-tagline">
+          Dev Front-End em evolução para Full Stack<br>
+          <span class="hero-stack">JavaScript · Python · React Native · ADS — PUC Minas</span>
+        </p>
+
+        <p class="hero-sub">
+          Construo interfaces funcionais e bem estruturadas — pensadas a partir da lógica e do impacto que geram para quem usa.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projetos" class="btn-ghost">ver projetos</a>
+          <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="btn-link">github ↗</a>
+          <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="btn-link">linkedin ↗</a>
+        </div>
+      </div>
+
+      <div class="hero-photo reveal-right">
+        <!--
+          FOTO DE PERFIL
+          Arquivo: Fotos/fotoperfil.png
+        -->
+        <div class="photo-circle">
+          <img
+            src="Fotos/fotoperfil.png"
+            alt="Foto de Matheus Jalles"
+            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+          >
+        </div>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>ADS · PUC Minas · Em andamento</span>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================
+         SEÇÃO 01 — SOBRE
+    ============================================ -->
+    <section class="section" id="sobre">
+
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Sobre</h2>
+      </div>
+
+      <div class="sobre-grid reveal">
+
+        <div class="sobre-text">
+          <p>Antes de escrever código, eu trabalhava direto com pessoas — vendas, atendimento, design para clientes de todo o Brasil. Aprendi que <em>o que realmente importa</em> é entender quem está do outro lado antes de entregar qualquer solução.</p>
+          <p>Essa visão me acompanha no desenvolvimento: construo interfaces pensando em quem vai usar, não só em como o código vai rodar. Para mim, tecnologia é meio — o fim é sempre resolver um problema real de uma pessoa real.</p>
+          <p>Hoje curso ADS na <strong>PUC Minas</strong> e evoluo minha stack diariamente, com foco em front-end e expandindo para mobile com React Native e para back-end com Python e SQL.</p>
+        </div>
+
+        <div class="sobre-cards">
+          <div class="mini-card">
+            <span class="mini-icon">◆</span>
+            <div><strong>Front-End</strong><span>HTML · CSS · JavaScript</span></div>
+          </div>
+          <div class="mini-card">
+            <span class="mini-icon">◈</span>
+            <div><strong>Mobile</strong><span>React Native · Expo</span></div>
+          </div>
+          <div class="mini-card">
+            <span class="mini-icon">◇</span>
+            <div><strong>Back-End</strong><span>Python · SQL</span></div>
+          </div>
+          <div class="mini-card">
+            <span class="mini-icon">○</span>
+            <div><strong>ADS · PUC Minas</strong><span>Em andamento · 2027</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================================
+         SEÇÃO 02 — PROJETOS
+         4 cards no formato horizontal.
+         Imagens clicáveis abrem lightbox.
+         Setas teclado / botões navegam entre fotos.
+    ============================================ -->
+    <section class="section" id="projetos">
+
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Projetos</h2>
+      </div>
+
+      <div class="proj-lista">
+
+
+        <!-- ==========================================
+             PROJETO 1 — Sistema de Gestão de Condomínios
+             Imagens: Login.jpeg · Entregas.jpeg
+        ========================================== -->
+        <div class="proj-card-h reveal">
+
+          <!-- Lado esquerdo: galeria de imagens -->
+          <div class="proj-card-h-media">
+
+            <!-- Imagem principal — clicável -->
+            <div class="proj-galeria">
+              <img
+                class="proj-img-principal expandivel"
+                src="Fotos/Sistema de entregas/Login.jpeg"
+                alt="Sistema de Condomínios — login"
+                data-galeria="cond"
+                data-index="0"
+                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
+              >
+              <div class="expandir-hint">⤢ expandir</div>
+              <div class="img-fallback-msg">📸 Fotos/Sistema de entregas/Login.jpeg</div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="proj-thumbs">
+              <img class="proj-thumb expandivel ativo"
+                src="Fotos/Sistema de entregas/Login.jpeg" alt="Login"
+                data-galeria="cond" data-index="0"
+                onerror="this.style.opacity='0.2'">
+              <img class="proj-thumb expandivel"
+                src="Fotos/Sistema de entregas/Entregas.jpeg" alt="Entregas"
+                data-galeria="cond" data-index="1"
+                onerror="this.style.opacity='0.2'">
+            </div>
+
+          </div>
+
+          <!-- Lado direito: informações -->
+          <div class="proj-card-h-info">
+            <div class="proj-labels">
+              <span class="proj-tag">Web</span>
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag">HTML/CSS</span>
+              <span class="proj-tag">Firebase</span>
+              <span class="proj-tag live">● Online</span>
+            </div>
+            <h3>Sistema de Gestão de Condomínios</h3>
+            <p>Sistema web completo para gerenciamento de condomínios — controle de moradores, reservas de espaços, comunicados e administração geral. Funcional e hospedado no Firebase.</p>
+            <div class="proj-links">
+              <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
+              <!-- Substitua o href="#" pelo link real do Firebase -->
+              <a href="#" class="proj-link proj-link-demo">Ver online ↗</a>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             PROJETO 2 — Movimenta
+             Imagens: User Flow.png
+        ========================================== -->
+        <div class="proj-card-h reveal">
+
+          <div class="proj-card-h-media">
+
+            <div class="proj-galeria">
+              <img
+                class="proj-img-principal expandivel"
+                src="Fotos/Movimenta/User Flow.png"
+                alt="Movimenta — User Flow"
+                data-galeria="movimenta"
+                data-index="0"
+                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
+              >
+              <div class="expandir-hint">⤢ expandir</div>
+              <div class="img-fallback-msg">📸 Fotos/Movimenta/User Flow.png</div>
+            </div>
+
+            <div class="proj-thumbs">
+              <img class="proj-thumb expandivel ativo"
+                src="Fotos/Movimenta/User Flow.png" alt="User Flow"
+                data-galeria="movimenta" data-index="0"
+                onerror="this.style.opacity='0.2'">
+            </div>
+
+          </div>
+
+          <div class="proj-card-h-info">
+            <div class="proj-labels">
+              <span class="proj-tag">Web</span>
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag">HTML/CSS</span>
+            </div>
+            <h3>Movimenta</h3>
+            <p>App web para organizar e gerenciar tarefas diárias com criação, edição e exclusão. Foco em lógica de programação e manipulação do DOM.</p>
+            <div class="proj-links">
+              <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             PROJETO 3 — Meu Controle MEI
+             Imagens: dashboard.jpeg · RELATORIOFINANCEIRO.jpeg · serviços.jpeg
+        ========================================== -->
+        <div class="proj-card-h reveal">
+
+          <div class="proj-card-h-media">
+
+            <div class="proj-galeria">
+              <img
+                class="proj-img-principal expandivel"
+                src="Fotos/ControleMEI/dashboard.jpeg"
+                alt="Meu Controle MEI — dashboard"
+                data-galeria="mei"
+                data-index="0"
+                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
+              >
+              <div class="expandir-hint">⤢ expandir</div>
+              <div class="img-fallback-msg">📸 Fotos/ControleMEI/dashboard.jpeg</div>
+            </div>
+
+            <div class="proj-thumbs">
+              <img class="proj-thumb expandivel ativo"
+                src="Fotos/ControleMEI/dashboard.jpeg" alt="Dashboard"
+                data-galeria="mei" data-index="0"
+                onerror="this.style.opacity='0.2'">
+              <img class="proj-thumb expandivel"
+                src="Fotos/ControleMEI/RELATORIOFINANCEIRO.jpeg" alt="Relatório"
+                data-galeria="mei" data-index="1"
+                onerror="this.style.opacity='0.2'">
+              <img class="proj-thumb expandivel"
+                src="Fotos/ControleMEI/serviços.jpeg" alt="Serviços"
+                data-galeria="mei" data-index="2"
+                onerror="this.style.opacity='0.2'">
+            </div>
+
+          </div>
+
+          <div class="proj-card-h-info">
+            <div class="proj-labels">
+              <span class="proj-tag">Mobile</span>
+              <span class="proj-tag">React Native</span>
+              <span class="proj-tag">Expo</span>
+              <span class="proj-tag wip">Em dev</span>
+            </div>
+            <h3>Meu Controle MEI</h3>
+            <p>App mobile para controle financeiro de microempreendedores — receitas, despesas e relatórios. Desenvolvido com React Native e Expo com foco em usabilidade real.</p>
+            <span class="proj-wip-label">Em desenvolvimento</span>
+          </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             PROJETO 4 — Eco Connect
+             Imagem: ecoconnectlogo.png
+        ========================================== -->
+        <div class="proj-card-h reveal">
+
+          <div class="proj-card-h-media">
+
+            <div class="proj-galeria proj-galeria-logo">
+              <img
+                class="proj-img-principal expandivel"
+                src="Fotos/EcoConnect/ecoconnectlogo.png"
+                alt="Eco Connect — logo"
+                data-galeria="eco"
+                data-index="0"
+                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
+              >
+              <div class="expandir-hint">⤢ expandir</div>
+              <div class="img-fallback-msg">📸 Fotos/EcoConnect/ecoconnectlogo.png</div>
+            </div>
+
+            <div class="proj-thumbs">
+              <img class="proj-thumb expandivel ativo"
+                src="Fotos/EcoConnect/ecoconnectlogo.png" alt="Eco Connect"
+                data-galeria="eco" data-index="0"
+                onerror="this.style.opacity='0.2'">
+            </div>
+
+          </div>
+
+          <div class="proj-card-h-info">
+            <div class="proj-labels">
+              <span class="proj-tag">Web</span>
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag wip">Em dev</span>
+            </div>
+            <h3>Eco Connect</h3>
+            <p>Plataforma de conexão voltada para sustentabilidade e impacto social. Tecnologia acessível construída com propósito.</p>
+            <span class="proj-wip-label">Em desenvolvimento</span>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- fim: proj-lista -->
+
+
+      <!-- Bloco LinkedIn -->
+      <div class="linkedin-projects reveal">
+
+        <div class="lp-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3zm7 0h4v1.85h.06c.56-1.06 1.94-2.18 3.98-2.18 4.26 0 5.04 2.8 5.04 6.44V21h-4v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44V21h-4z"/>
+          </svg>
+          <span>Seção de Projetos — LinkedIn</span>
+        </div>
+
+        <p class="lp-desc">Copie e adicione estes textos na seção "Projetos" do seu perfil LinkedIn:</p>
+
+        <div class="lp-grid">
+          <div class="lp-card">
+            <div class="lp-top"><h4>Sistema de Gestão de Condomínios</h4><span class="lp-status live">● Online</span></div>
+            <div class="lp-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Firebase</span></div>
+            <p>Sistema web completo para gerenciamento de condomínios. Funcional e hospedado no Firebase.</p>
+            <span class="lp-link">github.com/MatheusJalles</span>
+          </div>
+          <div class="lp-card">
+            <div class="lp-top"><h4>Movimenta</h4><span class="lp-status">Web App</span></div>
+            <div class="lp-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+            <p>Aplicação web para gerenciamento de tarefas com criação, edição e exclusão. Foco em lógica e DOM.</p>
+            <span class="lp-link">github.com/MatheusJalles</span>
+          </div>
+          <div class="lp-card">
+            <div class="lp-top"><h4>Meu Controle MEI</h4><span class="lp-status wip">Em dev</span></div>
+            <div class="lp-tags"><span>React Native</span><span>Expo</span><span>JavaScript</span></div>
+            <p>App mobile para controle financeiro de microempreendedores com React Native e Expo.</p>
+            <span class="lp-link">github.com/MatheusJalles</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================================
+         SEÇÃO 03 — STACK
+    ============================================ -->
+    <section class="section" id="stack">
+
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Stack</h2>
+      </div>
+
+      <div class="stack-grid reveal">
+        <div class="stack-group">
+          <h4>Front-End</h4>
+          <div class="stack-items"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Mobile</h4>
+          <div class="stack-items"><span>React Native</span><span>Expo</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Back-End</h4>
+          <div class="stack-items"><span>Python</span><span>SQL</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Ferramentas</h4>
+          <div class="stack-items"><span>Git</span><span>GitHub</span><span>Figma</span><span>VS Code</span></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================
+         SEÇÃO 04 — CONTATO
+    ============================================ -->
+    <section class="section contato-section" id="contato">
+
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Contato</h2>
+      </div>
+
+      <div class="contato-inner reveal">
+
+        <p class="contato-text">
+          Aberto a oportunidades, freelas e colaborações.<br>
+          A melhor forma de me encontrar é pelo LinkedIn.
+        </p>
+
+        <a href="mailto:contato.matheusjalles@gmail.com" class="contato-email">contato.matheusjalles@gmail.com</a>
+
+        <div class="botoes-contato">
+
+          <a href="mailto:contato.matheusjalles@gmail.com" class="botao-contato email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01l10 6.49 10-6.5V6H2zm20 12v-9.5l-10 6.5-10-6.5V18h20z"/></svg>
+            E-mail
+          </a>
+
+          <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="botao-contato linkedin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3zm7 0h4v1.85h.06c.56-1.06 1.94-2.18 3.98-2.18 4.26 0 5.04 2.8 5.04 6.44V21h-4v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44V21h-4z"/></svg>
+            LinkedIn
+          </a>
+
+          <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="botao-contato github">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Matheus Jalles · 2026</span>
+    <span>BH · Brasil</span>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

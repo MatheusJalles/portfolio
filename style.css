@@ -1,0 +1,1498 @@
+/*
+  ================================================
+  PORTFÓLIO — MATHEUS JALLES
+  Arquivo: style.css
+  ================================================
+  ÍNDICE:
+    1. Variáveis CSS (cores, fontes, tamanhos)
+    2. Reset e base
+    3. Canvas de fundo
+    4. Header / navegação
+    5. Hero (apresentação)
+    6. Seções (estrutura geral)
+    7. Sobre mim
+    8. Projetos (destaque + grade + linkedin)
+    9. Stack técnica
+   10. Contato
+   11. Footer
+   12. Animações de entrada (reveal)
+   13. Responsividade (mobile)
+  ================================================
+*/
+
+
+/* ================================================
+   1. VARIÁVEIS CSS
+   Altere aqui para mudar cores e fontes globalmente
+================================================ */
+:root {
+  /* Cores de fundo */
+  --bg:       #0a0a0a;   /* fundo principal (quase preto) */
+  --bg2:      #111111;   /* fundo levemente mais claro */
+  --surface:  #161616;   /* cards e superfícies */
+
+  /* Bordas */
+  --border:   rgba(255, 255, 255, 0.07);   /* borda sutil */
+  --border2:  rgba(255, 255, 255, 0.12);   /* borda um pouco mais visível */
+
+  /* Textos */
+  --text:     #e8e8e8;   /* texto principal */
+  --muted:    #666;      /* texto secundário / descrições */
+  --muted2:   #333;      /* texto muito apagado / números */
+  --white:    #ffffff;   /* branco puro para títulos */
+
+  /* Cor de destaque (verde-limão) */
+  --accent:   #d4f84a;
+
+  /* Tipografia */
+  --font-sans: 'DM Sans', sans-serif;    /* textos e títulos */
+  --font-mono: 'DM Mono', monospace;     /* labels, tags, código */
+
+  /* Outros */
+  --radius:  10px;     /* arredondamento dos cards */
+  --max:     1100px;   /* largura máxima do conteúdo */
+}
+
+
+/* ================================================
+   2. RESET E BASE
+   Zera margens, define comportamento padrão
+================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scroll suave ao clicar nos links de ancora */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;             /* evita scroll horizontal */
+  -webkit-font-smoothing: antialiased; /* fontes mais nítidas no Mac/iOS */
+}
+
+/* Remove sublinhado dos links e herda a cor */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Itálico falso — usado como destaque em amarelo */
+em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* Negrito com cor clara */
+strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+
+/* ================================================
+   3. CANVAS DE FUNDO
+   Elemento fixo atrás de todo o conteúdo
+   As partículas são desenhadas pelo script.js
+================================================ */
+#bg-canvas {
+  position: fixed;
+  inset: 0;             /* cobre toda a tela */
+  z-index: 0;           /* fica atrás de tudo */
+  pointer-events: none; /* não captura cliques do mouse */
+  opacity: 0.15;        /* bem sutil, só atmosfera */
+}
+
+
+/* ================================================
+   4. HEADER / NAVEGAÇÃO
+   Barra fixa no topo com blur de fundo
+================================================ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;                   /* sempre acima do conteúdo */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(16px);          /* efeito vidro fosco */
+  -webkit-backdrop-filter: blur(16px);  /* suporte Safari */
+}
+
+/* Logo MJ no canto esquerdo */
+.logo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* Links de navegação centrais */
+nav {
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--text); /* clareia ao passar o mouse */
+}
+
+/* Botão LinkedIn no canto direito */
+.header-cta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  padding: 6px 14px;
+  border: 1px solid rgba(212, 248, 74, 0.3);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.header-cta:hover {
+  background: rgba(212, 248, 74, 0.08);
+}
+
+
+/* ================================================
+   5. HERO — APRESENTAÇÃO INICIAL
+================================================ */
+
+/* O main empurra o conteúdo abaixo do header fixo */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px 2rem 0; /* 56px = altura do header */
+}
+
+/* Layout do hero: texto à esquerda, foto à direita */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  min-height: 100vh;       /* ocupa a tela inteira na primeira visita */
+  padding: 6rem 0 4rem;
+}
+
+/* Linha de localização com ponto pulsando */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
+}
+
+/* Ponto verde animado (indica "online / disponível") */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulsar 2s ease-in-out infinite;
+}
+
+/* Animação do ponto — pisca suavemente */
+@keyframes pulsar {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Separador · entre textos do hero-meta */
+.sep {
+  color: var(--muted2);
+}
+
+/* Nome principal — maior elemento visual */
+.hero-title {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(3.5rem, 7vw, 6rem); /* adapta ao tamanho da tela */
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 1.2rem;
+}
+
+.hero-title .line-1,
+.hero-title .line-2 {
+  display: block;
+}
+
+/* Tagline profissional abaixo do nome */
+.hero-tagline {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Stack em amarelo abaixo da tagline */
+.hero-stack {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* Texto de proposta de valor */
+.hero-sub {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 440px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+/* Botões de ação do hero */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Botão com borda (ver projetos) */
+.btn-ghost {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 10px 22px;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  background: var(--surface);
+}
+
+/* Links de texto simples (github, linkedin) */
+.btn-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.btn-link:hover {
+  color: var(--text);
+}
+
+/* Foto de perfil circular */
+.hero-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* Moldura circular da foto */
+.photo-circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border2);
+  background: var(--surface);
+  position: relative;
+}
+
+.photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fallback: se a imagem não carregar, exibe as iniciais "MJ" */
+.photo-placeholder::after {
+  content: "MJ";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+/* Badge de formação abaixo da foto */
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Pontinho no badge */
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+
+/* ================================================
+   6. SEÇÕES — ESTRUTURA GERAL
+   Padrão reutilizado em todas as seções
+================================================ */
+.section {
+  padding: 4rem 0;                   /* espaçamento vertical reduzido */
+  border-top: 1px solid var(--border);
+}
+
+/* Linha com número + título da seção */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;               /* espaço abaixo do título reduzido */
+}
+
+/* Número da seção (01, 02, 03...) */
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: 1px;
+}
+
+/* Título da seção em caixa alta */
+.section-header h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+
+/* ================================================
+   7. SOBRE MIM
+================================================ */
+
+/* Grid: texto à esquerda, mini-cards à direita */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;                         /* gap reduzido */
+  align-items: start;
+}
+
+/* Parágrafos do texto sobre */
+.sobre-text p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+.sobre-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Grade 2x2 dos mini-cards */
+.sobre-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;                          /* gap mínimo — a borda é o fundo */
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Cada mini-card */
+.mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--surface);
+  padding: 1.2rem;
+  transition: background 0.2s;
+}
+
+.mini-card:hover {
+  background: var(--bg2);
+}
+
+/* Ícone decorativo do mini-card */
+.mini-icon {
+  font-size: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.mini-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-card strong {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.mini-card span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+
+/* ================================================
+   8. PROJETOS
+================================================ */
+
+/* --- Card em destaque (projeto principal) --- */
+.proj-featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;                         /* gap reduzido */
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;             /* espaço abaixo reduzido */
+  transition: border-color 0.3s;
+}
+
+.proj-featured:hover {
+  border-color: var(--accent);
+}
+
+/* Área da galeria de imagens */
+.proj-featured-media {
+  background: var(--bg2);
+  min-height: 280px;
+  overflow: hidden;
+}
+
+/* Container flex da galeria (imagem principal + thumbnails) */
+.media-gallery {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagem principal da galeria */
+.gallery-main {
+  flex: 1;
+  position: relative;
+  background: var(--bg2);
+  min-height: 210px;
+  overflow: hidden;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+/* Esconde a imagem quando não carrega */
+.gallery-main.img-fallback img {
+  display: none;
+}
+
+/* Mensagem de fallback (quando não há imagem) */
+.img-fallback-msg {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 2;
+  padding: 1rem;
+}
+
+.img-fallback-msg code {
+  font-size: 10px;
+  color: var(--accent);
+  display: block;
+  margin-top: 0.4rem;
+}
+
+/* Exibe a mensagem quando a imagem falha */
+.gallery-main.img-fallback .img-fallback-msg {
+  display: flex;
+}
+
+/* Faixa de thumbnails clicáveis na parte inferior da galeria */
+.gallery-thumbs {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Cada thumbnail */
+.thumb {
+  flex: 1;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+  position: relative;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Thumbnail ativo tem borda amarela */
+.thumb.active {
+  border-color: var(--accent);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Esconde imagem quebrada do thumb */
+.thumb.thumb-error img {
+  display: none;
+}
+
+/* Número sobreposto no thumb quando sem imagem */
+.thumb span {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted2);
+}
+
+/* Informações ao lado da galeria */
+.proj-featured-info {
+  padding: 1.8rem 1.8rem 1.8rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.proj-featured-info h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.proj-featured-info p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* --- Grade de projetos (3 colunas) --- */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;                          /* gap mínimo — visual de tabela */
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.5rem;             /* espaço abaixo da grade */
+}
+
+/* Card individual da grade */
+.proj-card {
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s;
+}
+
+.proj-card:hover {
+  background: #1a1a1a;
+}
+
+/* Área de mídia do card (foto ou vídeo) */
+.proj-media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg2);
+  overflow: hidden;
+}
+
+/* Container da imagem/vídeo */
+.proj-img-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-img-wrap img,
+.proj-img-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Quando imagem falha: torna visível quase transparente */
+.proj-img-wrap.img-fallback img,
+.proj-img-wrap.img-fallback video {
+  opacity: 0.1;
+}
+
+/* Mensagem de fallback pequena (nos cards da grade) */
+.img-fallback-msg.small {
+  font-size: 9px;
+  line-height: 1.6;
+  display: none;
+}
+
+.proj-img-wrap.img-fallback .img-fallback-msg.small {
+  display: flex;
+}
+
+/* Botão de play/pause sobre o vídeo */
+.play-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 2;
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Informações do card da grade */
+.proj-info {
+  padding: 1rem;                     /* padding reduzido */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.proj-info h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.proj-info p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+  flex: 1;
+}
+
+/* Tags de tecnologia nos cards */
+.proj-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.proj-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+/* Tag "Online" em verde */
+.proj-tag.live {
+  color: var(--accent);
+  border-color: rgba(212, 248, 74, 0.3);
+}
+
+/* Tag "Em dev" em cinza escuro */
+.proj-tag.wip {
+  color: var(--muted2);
+  border-color: var(--muted2);
+}
+
+/* Link do projeto */
+.proj-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.proj-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  transition: opacity 0.2s;
+  margin-top: auto;
+}
+
+.proj-link:hover {
+  opacity: 0.7;
+}
+
+/* Link "Ver online" com borda */
+.proj-link-demo {
+  color: var(--white);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+.proj-link-demo:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* Label "Em desenvolvimento" abaixo da descrição */
+.proj-wip-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted2);
+}
+
+/* --- Bloco LinkedIn (textos prontos para copiar) --- */
+.linkedin-projects {
+  border: 1px solid #0077B5;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Cabeçalho azul LinkedIn */
+.lp-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  background: rgba(0, 119, 181, 0.12);
+  border-bottom: 1px solid rgba(0, 119, 181, 0.2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #4da6d8;
+  letter-spacing: 0.5px;
+}
+
+/* Instrução do bloco */
+.lp-desc {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0.7rem 1.2rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Grade dos 3 cards do LinkedIn */
+.lp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+/* Card individual do LinkedIn */
+.lp-card {
+  background: var(--surface);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Linha com nome + status */
+.lp-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.lp-card h4 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+/* Badge de status do card LinkedIn */
+.lp-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--muted2);
+  border: 1px solid var(--muted2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lp-status.live {
+  color: var(--accent);
+  border-color: rgba(212, 248, 74, 0.3);
+}
+
+/* Tags azuis do LinkedIn */
+.lp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.lp-tags span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #4da6d8;
+  background: rgba(0, 119, 181, 0.1);
+  border: 1px solid rgba(0, 119, 181, 0.2);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* Descrição do projeto para copiar */
+.lp-card p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* Link do GitHub no final */
+.lp-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #4da6d8;
+  opacity: 0.7;
+}
+
+
+/* ================================================
+   9. STACK TÉCNICA
+================================================ */
+
+/* Grade de 4 colunas com as tecnologias */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Grupo de tecnologias (ex: Front-End, Mobile...) */
+.stack-group {
+  background: var(--surface);
+  padding: 1.2rem;                   /* padding reduzido */
+}
+
+/* Título do grupo em maiúsculas */
+.stack-group h4 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted2);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;             /* espaço abaixo do título reduzido */
+}
+
+/* Lista vertical de tecnologias */
+.stack-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;                       /* gap entre itens reduzido */
+}
+
+/* Cada tecnologia na lista */
+.stack-items span {
+  font-size: 13px;
+  color: var(--text);
+  padding: 4px 0;                    /* padding vertical reduzido */
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+
+.stack-items span:last-child {
+  border-bottom: none;
+}
+
+.stack-items span:hover {
+  color: var(--accent);
+}
+
+
+/* ================================================
+   10. CONTATO
+================================================ */
+.contato-section {
+  border-bottom: 1px solid var(--border);
+}
+
+.contato-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;                       /* gap reduzido */
+}
+
+/* Texto introdutório */
+.contato-text {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 440px;
+}
+
+/* E-mail em destaque como elemento grande e clicável */
+.contato-email {
+  font-family: var(--font-mono);
+  font-size: clamp(1.2rem, 3vw, 2rem); /* responsivo */
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: -0.5px;
+  transition: color 0.2s;
+}
+
+.contato-email:hover {
+  color: var(--accent);
+}
+
+/* Linha de botões coloridos */
+.botoes-contato {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* Botão de contato base */
+.botao-contato {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.botao-contato:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+/* Cores individuais dos botões */
+.botao-contato.email    { background: #D44638; }
+.botao-contato.linkedin { background: #0077B5; }
+.botao-contato.github   { background: #161515; border: 1px solid var(--border2); }
+
+
+/* ================================================
+   11. FOOTER
+================================================ */
+footer {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: 0.5px;
+}
+
+
+/* ================================================
+   12. ANIMAÇÕES DE ENTRADA (SCROLL REVEAL)
+   Elementos começam invisíveis e sobem ao aparecer
+   A classe .visible é adicionada pelo script.js
+================================================ */
+
+/* Entrada de baixo para cima */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* Entrada da direita para esquerda (usada na foto) */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* Estado visível — adicionado pelo IntersectionObserver */
+.reveal.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+
+/* ================================================
+   13. RESPONSIVIDADE
+   Ajustes para telas menores que 900px e 600px
+================================================ */
+@media (max-width: 900px) {
+
+  /* Hero em coluna única no mobile */
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 5rem 0 3rem;
+    gap: 2rem;
+  }
+
+  /* Foto menor ao lado do texto no mobile */
+  .hero-photo {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .photo-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Sobre em coluna única */
+  .sobre-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Projeto em destaque empilhado */
+  .proj-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .proj-featured-info {
+    padding: 1.5rem;
+  }
+
+  /* Grade de projetos em coluna única */
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Grade do LinkedIn em coluna única */
+  .lp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stack em 2 colunas */
+  .stack-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Esconde navegação central no mobile */
+  nav {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  main    { padding-left: 1.2rem; padding-right: 1.2rem; }
+  header  { padding: 0 1.2rem; }
+  footer  { padding: 1.5rem 1.2rem; }
+
+  /* Stack em coluna única em telas muito pequenas */
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Mini-cards em coluna única */
+  .sobre-cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reduz espaçamento do nome */
+  .hero-title {
+    letter-spacing: -1px;
+  }
+}
+
+
+/* ================================================
+   CARDS HORIZONTAIS DE PROJETOS
+   Layout: imagem à esquerda, info à direita
+   Empilhados verticalmente na lista
+================================================ */
+
+/* Lista vertical que contém todos os cards */
+.proj-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Card horizontal individual */
+.proj-card-h {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.proj-card-h:hover {
+  border-color: var(--accent);
+}
+
+/* Lado esquerdo: galeria de imagens */
+.proj-card-h-media {
+  background: var(--bg2);
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+}
+
+/* Container da imagem principal */
+.proj-galeria {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg2);
+  cursor: zoom-in;
+}
+
+/* Imagem principal do card */
+.proj-img-principal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.proj-galeria:hover .proj-img-principal {
+  transform: scale(1.03);
+}
+
+/* Logo com object-fit contain (para não cortar o logo) */
+.proj-galeria-logo .proj-img-principal {
+  object-fit: contain;
+  padding: 1.5rem;
+  background: #fff;
+}
+
+/* Dica de expandir que aparece ao hover */
+.expandir-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.proj-galeria:hover .expandir-hint {
+  opacity: 1;
+}
+
+/* Fallback quando imagem não carrega */
+.proj-galeria.img-fallback .proj-img-principal {
+  opacity: 0.05;
+}
+
+.img-fallback-msg {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted2);
+  line-height: 1.8;
+  padding: 1rem;
+  pointer-events: none;
+}
+
+.proj-galeria.img-fallback .img-fallback-msg {
+  display: flex;
+}
+
+/* Faixa de thumbnails na base do lado esquerdo */
+.proj-thumbs {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(0,0,0,0.45);
+  flex-shrink: 0;
+}
+
+/* Cada thumbnail */
+.proj-thumb {
+  flex: 1;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, opacity 0.2s;
+  opacity: 0.6;
+}
+
+.proj-thumb:hover {
+  opacity: 1;
+}
+
+/* Thumbnail ativo: borda amarela e opacidade total */
+.proj-thumb.ativo {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+/* Logo: thumbnail com object-fit contain */
+.proj-galeria-logo + .proj-thumbs .proj-thumb {
+  object-fit: contain;
+  background: #fff;
+  padding: 2px;
+}
+
+/* Lado direito: informações do projeto */
+.proj-card-h-info {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.proj-card-h-info h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.proj-card-h-info p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+
+/* ================================================
+   LIGHTBOX — Visualizador em tela cheia
+   Cobre toda a tela com fundo escuro.
+   A imagem fica centralizada.
+   Setas navegam. ESC fecha.
+================================================ */
+
+.lightbox {
+  /* Oculto por padrão — o script adiciona .lightbox-ativo para abrir */
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.93);
+  align-items: center;
+  justify-content: center;
+  animation: fadeInLightbox 0.2s ease;
+}
+
+/* Classe adicionada pelo script ao abrir */
+.lightbox.lightbox-ativo {
+  display: flex;
+}
+
+@keyframes fadeInLightbox {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Imagem em tela cheia */
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+  user-select: none;
+}
+
+/* Botão fechar (✕) */
+.lightbox-fechar {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 1000;
+}
+
+.lightbox-fechar:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Botões de navegação (‹ e ›) */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 2rem;
+  width: 48px;
+  height: 72px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 1000;
+  line-height: 1;
+}
+
+.lightbox-nav:hover {
+  background: rgba(212, 248, 74, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lightbox-prev { left: 1.2rem; }
+.lightbox-next { right: 1.2rem; }
+
+/* Esconde navegação quando só há 1 imagem */
+.lightbox-nav.oculto {
+  display: none;
+}
+
+/* Contador de imagens (1 / 3) */
+.lightbox-contador {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+
+
+/* ================================================
+   RESPONSIVIDADE DOS NOVOS COMPONENTES
+================================================ */
+@media (max-width: 900px) {
+
+  /* Cards viram verticais no mobile */
+  .proj-card-h {
+    grid-template-columns: 1fr;
+  }
+
+  .proj-card-h-media {
+    min-height: 200px;
+  }
+
+  .proj-card-h-info {
+    padding: 1.2rem;
+  }
+
+  /* Navegação do lightbox fica menor */
+  .lightbox-nav {
+    width: 36px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+}
