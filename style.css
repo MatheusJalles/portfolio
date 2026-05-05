@@ -37,8 +37,8 @@
 
   /* Textos */
   --text:     #e8e8e8;   /* texto principal */
-  --muted:    #4da6d8;      /* texto secundário / descrições */
-  --muted2:   #2d7fa8;      /* texto muito apagado / números */
+  --muted:    #888;      /* texto secundário / descrições */
+  --muted2:   #555;      /* texto muito apagado / números */
   --white:    #ffffff;   /* branco puro para títulos */
 
   /* Cor de destaque (verde-limão) */
@@ -301,12 +301,12 @@ main {
 .btn-link {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--muted);
+  color: #4da6d8;
   transition: color 0.2s;
 }
 
 .btn-link:hover {
-  color: var(--text);
+  color: #7dc4e8;
 }
 
 /* Foto de perfil circular */
