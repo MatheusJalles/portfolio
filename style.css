@@ -37,8 +37,8 @@
 
   /* Textos */
   --text:     #e8e8e8;   /* texto principal */
-  --muted:    #666;      /* texto secundário / descrições */
-  --muted2:   #333;      /* texto muito apagado / números */
+  --muted:    #4da6d8;      /* texto secundário / descrições */
+  --muted2:   #2d7fa8;      /* texto muito apagado / números */
   --white:    #ffffff;   /* branco puro para títulos */
 
   /* Cor de destaque (verde-limão) */
