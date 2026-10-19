@@ -1,487 +1,508 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<!-- ================================================
-     PORTFÓLIO — MATHEUS JALLES
-     Desenvolvedor Front-End | BH, Brasil
-     Última atualização: 2026
-================================================ -->
+<!--
+  PORTFÓLIO — MATHEUS JALLES
+  Modelo: clean/light compacto
+  Atualizado: 2026
+-->
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Matheus Jalles — Desenvolvedor Full Stack em formação · Foco em Front-End | JavaScript · Python · React Native | ADS — PUC Minas">
-  <meta property="og:title" content="Matheus Jalles — Dev Front-End">
-  <meta property="og:description" content="Interfaces funcionais, bem estruturadas e pensadas a partir da lógica.">
+  <meta name="description" content="Matheus Jalles — Desenvolvedor Full Stack em formação. JavaScript, TypeScript, React Native, Python. ADS — PUC Minas.">
+  <meta property="og:title" content="Matheus Jalles — Desenvolvedor Full Stack">
+  <meta property="og:description" content="Apaixonado por tecnologia e por resolver problemas através do código.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0a0a0a">
   <title>Matheus Jalles</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Favicon inicial -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%231a1a2e'/><text y='.85em' x='10' font-size='58' font-family='sans-serif' font-weight='700' fill='white'>M</text></svg>">
+
+  <!-- Fontes: Inter para texto geral -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Canvas de fundo: partículas animadas pelo script.js -->
-  <canvas id="bg-canvas"></canvas>
+  <!-- ========================================
+       HEADER — fixo, fundo branco, navegacao
+       (sem logo MJ e sem GitHub — movidos para abaixo da foto)
+  ======================================== -->
+  <header id="header">
+    <div class="header-inner">
 
-  <!-- ================================================
-       LIGHTBOX — Visualizador de imagem em tela cheia
-       Abre ao clicar em qualquer imagem dos projetos.
-       Controlado pelo script.js.
-       ESC fecha. Setas navegam entre imagens.
-  ================================================ -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem">
-    <button class="lightbox-fechar" id="lightbox-fechar" aria-label="Fechar">✕</button>
-    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Anterior">‹</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="Visualização ampliada">
-    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Próxima">›</button>
-    <div class="lightbox-contador" id="lightbox-contador"></div>
-  </div>
+      <!-- Navegacao central -->
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#contato">Contato</a>
+      </nav>
 
-  <!-- Header fixo no topo -->
-  <header>
-    <a href="#inicio" class="logo">MJ</a>
-    <nav>
-      <a href="#sobre">sobre</a>
-      <a href="#projetos">projetos</a>
-      <a href="#stack">stack</a>
-      <a href="#contato">contato</a>
-    </nav>
-    <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="header-cta">LinkedIn ↗</a>
+      <!-- Botao hamburguer (mobile) -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
   </header>
 
   <main>
 
-    <!-- ============================================
-         SEÇÃO 0 — HERO
-    ============================================ -->
+    <!-- ========================================
+         SECAO HERO — apresentacao principal
+    ======================================== -->
     <section class="hero" id="inicio">
+      <div class="container hero-grid reveal">
 
-      <div class="hero-inner reveal">
-        <div class="hero-meta">
-          <span class="dot"></span>
-          <span>Belo Horizonte, BR</span>
-          <span class="sep">·</span>
-          <span>Aberto a oportunidades</span>
+        <!-- Texto do hero -->
+        <div class="hero-texto">
+          <p class="hero-saudacao">Ola, eu sou</p>
+          <h1 class="hero-nome">Matheus Jalles</h1>
+          <p class="hero-cargo">Desenvolvedor Full Stack em formacao · ADS — PUC Minas</p>
+          <p class="hero-desc">
+            Apaixonado por tecnologia e por resolver problemas atraves do codigo.
+            Busco oportunidades para evoluir, aprender e contribuir com projetos que geram impacto real.
+          </p>
+
+          <!-- Botoes de acao -->
+          <div class="hero-acoes">
+            <a href="#projetos" class="btn btn-primario">
+              Ver projetos
+            </a>
+            <a href="curriculo.pdf" download class="btn btn-secundario">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><polyline points="9 14 12 17 15 14"/></svg>
+              Baixar Curriculo
+            </a>
+          </div>
         </div>
 
-        <h1 class="hero-title">
-          <span class="line-1">Matheus</span>
-          <span class="line-2">Jalles<em>.</em></span>
-        </h1>
+        <!-- Coluna da foto + links de contato abaixo -->
+        <div class="hero-foto-col">
 
-        <p class="hero-tagline">
-          Desenvolvedor Full Stack em formação · Foco em Front-End<br>
-          <span class="hero-stack">JavaScript · Python · React Native · ADS — PUC Minas</span>
-        </p>
+          <!-- Foto circular -->
+          <div class="hero-foto">
+            <div class="foto-circulo">
+              <!--
+                FOTO: arquivo Fotos/fotoperfil.png
+                Fallback: exibe "MJ" se nao encontrar
+              -->
+              <img
+                src="Fotos/fotoperfil.png"
+                alt="Foto de Matheus Jalles"
+                onerror="this.style.display='none'; this.parentElement.classList.add('foto-fallback')"
+              >
+            </div>
+            <!-- Detalhe decorativo de canto -->
+            <div class="foto-detalhe"></div>
+          </div>
 
-        <p class="hero-sub">
-          Construo interfaces funcionais e bem estruturadas, pensadas a partir da lógica e do impacto que geram para quem usa.
-        </p>
+          <!-- Links de contato abaixo da foto (MJ + GitHub + LinkedIn) -->
+          <div class="hero-contato-links">
+            <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="hero-link-externo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="hero-link-externo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3zm7 0h4v1.85h.06c.56-1.06 1.94-2.18 3.98-2.18 4.26 0 5.04 2.8 5.04 6.44V21h-4v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44V21h-4z"/></svg>
+              LinkedIn
+            </a>
+          </div>
 
-        <div class="hero-actions">
-          <a href="#projetos" class="btn-ghost">ver projetos</a>
-          <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="btn-link">github ↗</a>
-          <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="btn-link">linkedin ↗</a>
-        </div>
+        </div><!-- fim hero-foto-col -->
+
       </div>
-
-      <div class="hero-photo reveal-right">
-        <div class="photo-circle">
-          <img
-            src="Fotos/fotoperfil.png"
-            alt="Foto de Matheus Jalles"
-            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
-          >
-        </div>
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          <span>ADS · PUC Minas · Em andamento</span>
-        </div>
-      </div>
-
     </section>
 
 
-    <!-- ============================================
-         SEÇÃO 01 — SOBRE
-    ============================================ -->
-    <section class="section" id="sobre">
+    <!-- ========================================
+         SECAO SOBRE — banner horizontal completo
+         (sem coluna de quote)
+    ======================================== -->
+    <section class="secao secao-cinza" id="sobre">
+      <div class="container sobre-banner reveal">
 
-      <div class="section-header">
-        <span class="section-num">01</span>
-        <h2>Sobre</h2>
-      </div>
-
-      <div class="sobre-grid reveal">
-
-        <div class="sobre-text">
-          <p>Antes de escrever código, eu trabalhava direto com pessoas: vendas, atendimento, design para clientes de todo o Brasil. Aprendi que <em>o que realmente importa</em> é entender quem está do outro lado antes de entregar qualquer solução.</p>
-          <p>Essa visão me acompanha no desenvolvimento: construo interfaces pensando em quem vai usar, não só em como o código vai rodar. Para mim, tecnologia é meio. O fim é sempre resolver um problema real de uma pessoa real.</p>
-          <p>Hoje curso ADS na <strong>PUC Minas</strong> e evoluo minha stack diariamente, com foco em front-end e expandindo para mobile com React Native e para back-end com Python e SQL.</p>
+        <div class="sobre-titulo">
+          <h2>Sobre mim</h2>
         </div>
 
-        <div class="sobre-cards">
-          <div class="mini-card">
-            <span class="mini-icon">◆</span>
-            <div><strong>Front-End</strong><span>HTML · CSS · JavaScript</span></div>
-          </div>
-          <div class="mini-card">
-            <span class="mini-icon">◈</span>
-            <div><strong>Mobile</strong><span>React Native · Expo</span></div>
-          </div>
-          <div class="mini-card">
-            <span class="mini-icon">◇</span>
-            <div><strong>Back-End</strong><span>Python · SQL</span></div>
-          </div>
-          <div class="mini-card">
-            <span class="mini-icon">○</span>
-            <div><strong>ADS · PUC Minas</strong><span>Em andamento · 2027</span></div>
+        <div class="sobre-conteudo">
+          <p>
+            Sou estudante de Analise e Desenvolvimento de Sistemas na PUC Minas
+            e estou em constante evolucao na area de tecnologia.
+            Tenho experiencia com desenvolvimento web e mobile,
+            trabalhando com foco em boas praticas, performance
+            e solucoes escaláveis.
+          </p>
+
+          <!-- Informacoes rapidas em linha -->
+          <div class="sobre-info">
+            <div class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Belo Horizonte, MG</span>
+            </div>
+            <div class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span>ADS — PUC Minas (previsao 2027)</span>
+            </div>
+            <div class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              <span>Disponivel: remoto, hibrido ou presencial</span>
+            </div>
           </div>
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- ============================================
-         SEÇÃO 02 — PROJETOS
-         4 cards no formato horizontal.
-         Imagens clicáveis abrem lightbox.
-         Setas teclado / botões navegam entre fotos.
-    ============================================ -->
-    <section class="section" id="projetos">
+    <!-- ========================================
+         SECAO HABILIDADES — cards por categoria
+    ======================================== -->
+    <section class="secao" id="habilidades">
+      <div class="container">
 
-      <div class="section-header">
-        <span class="section-num">02</span>
+        <h2>Habilidades / Stacks</h2>
+        <p class="secao-sub">Tecnologias que utilizo no meu dia a dia:</p>
+
+        <div class="skills-grid reveal">
+
+          <!-- Frontend -->
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icone skill-icone-azul">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3>Frontend</h3>
+            </div>
+            <div class="skill-tags">
+              <span>React.js</span>
+              <span>React Native</span>
+              <span>TypeScript</span>
+              <span>JavaScript</span>
+              <span>Tailwind CSS</span>
+              <span>Expo</span>
+              <span>HTML5</span>
+              <span>CSS3</span>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icone skill-icone-verde">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <h3>Backend</h3>
+            </div>
+            <div class="skill-tags">
+              <span>C#</span>
+              <span>ASP.NET Core</span>
+              <span>Node.js</span>
+              <span>Nest.js</span>
+              <span>API REST</span>
+              <span>Express</span>
+              <span>Python</span>
+            </div>
+          </div>
+
+          <!-- Banco de Dados -->
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icone skill-icone-vermelho">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <h3>Banco de Dados</h3>
+            </div>
+            <div class="skill-tags">
+              <span>PostgreSQL</span>
+              <span>MongoDB</span>
+              <span>Firebase</span>
+              <span>MySQL</span>
+            </div>
+          </div>
+
+          <!-- Ferramentas -->
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icone skill-icone-roxo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+              </div>
+              <h3>Ferramentas</h3>
+            </div>
+            <div class="skill-tags">
+              <span>Git</span>
+              <span>GitHub Actions</span>
+              <span>Docker</span>
+              <span>VS Code</span>
+              <span>Figma</span>
+            </div>
+          </div>
+
+          <!-- Outros -->
+          <div class="skill-card skill-card-largo">
+            <div class="skill-header">
+              <div class="skill-icone skill-icone-cinza">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>Outros</h3>
+            </div>
+            <div class="skill-tags">
+              <span>Linux</span>
+              <span>Metodologias Ageis</span>
+              <span>Consumo de APIs</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================
+         SECAO PROJETOS — divididos por categoria
+         Em Producao: Sistema Condominios, CommitLab 3D
+         Academicos PUC Minas: Eco Connect, Movimenta,
+                               Meu MEI, Cuida Mais
+    ======================================== -->
+    <section class="secao secao-cinza" id="projetos">
+      <div class="container">
+
         <h2>Projetos</h2>
-      </div>
+        <p class="secao-sub">Projetos que desenvolvi e que mais me orgulho:</p>
 
-      <div class="proj-lista">
-
-        <!-- ==========================================
-             PROJETO 1 — Sistema de Gestão de Condomínios
-             Imagens: Login.jpeg · Entregas.jpeg
-        ========================================== -->
-        <div class="proj-card-h reveal">
-
-          <div class="proj-card-h-media">
-
-            <div class="proj-galeria">
-              <img
-                class="proj-img-principal expandivel"
-                src="Fotos/Sistema de entregas/Login.jpeg"
-                alt="Sistema de Condomínios login"
-                data-galeria="cond"
-                data-index="0"
-                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
-              >
-              <div class="expandir-hint">⤢ expandir</div>
-              <div class="img-fallback-msg">📸 Fotos/Sistema de entregas/Login.jpeg</div>
-            </div>
-
-            <div class="proj-thumbs">
-              <img class="proj-thumb expandivel ativo"
-                src="Fotos/Sistema de entregas/Login.jpeg" alt="Login"
-                data-galeria="cond" data-index="0"
-                onerror="this.style.opacity='0.2'">
-              <img class="proj-thumb expandivel"
-                src="Fotos/Sistema de entregas/Entregas.jpeg" alt="Entregas"
-                data-galeria="cond" data-index="1"
-                onerror="this.style.opacity='0.2'">
-            </div>
-
+        <!-- ---- CATEGORIA: Em Producao ---- -->
+        <div class="proj-categoria reveal">
+          <div class="categoria-label">
+            <span class="categoria-dot dot-verde"></span>
+            Em producao
           </div>
 
-          <div class="proj-card-h-info">
-            <div class="proj-labels">
-              <span class="proj-tag">Web</span>
-              <span class="proj-tag">JavaScript</span>
-              <span class="proj-tag">HTML/CSS</span>
-              <span class="proj-tag">Firebase</span>
-              <span class="proj-tag live">● Online</span>
+          <!-- Sistema de Gerenciamento de Condominios -->
+          <div class="proj-item">
+            <div class="proj-icone proj-icone-azul">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <h3>Sistema de Gestão de Condomínios</h3>
-            <p>Sistema web completo para gerenciamento de condomínios: controle de moradores, reservas de espaços, comunicados e administração geral. Funcional e hospedado no Firebase.</p>
-            <div class="proj-links">
-              <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
-              <a href="#" class="proj-link proj-link-demo">Ver online ↗</a>
+            <div class="proj-conteudo">
+              <div class="proj-topo">
+                <h3>Sistema de Gerenciamento de Condominios</h3>
+                <div class="proj-badges">
+                  <span class="badge-online">Online</span>
+                  <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link-github">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <p class="proj-desc">Sistema para gestao de condominios com modulos de moradores, financeiro e ocorrencias. Hospedado no Firebase e em uso.</p>
+              <div class="proj-tags">
+                <span>React Native</span>
+                <span>Node.js</span>
+                <span>PostgreSQL</span>
+                <span>Firebase</span>
+              </div>
             </div>
           </div>
 
-        </div>
-
-
-        <!-- ==========================================
-             PROJETO 2 — Movimenta
-             Imagens: User Flow.png
-        ========================================== -->
-        <div class="proj-card-h reveal">
-
-          <div class="proj-card-h-media">
-
-            <div class="proj-galeria">
-              <img
-                class="proj-img-principal expandivel"
-                src="Fotos/Movimenta/User Flow.png"
-                alt="Movimenta User Flow"
-                data-galeria="movimenta"
-                data-index="0"
-                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
-              >
-              <div class="expandir-hint">⤢ expandir</div>
-              <div class="img-fallback-msg">📸 Fotos/Movimenta/User Flow.png</div>
+          <!-- CommitLab 3D -->
+          <div class="proj-item">
+            <div class="proj-icone proj-icone-laranja">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-
-            <div class="proj-thumbs">
-              <img class="proj-thumb expandivel ativo"
-                src="Fotos/Movimenta/User Flow.png" alt="User Flow"
-                data-galeria="movimenta" data-index="0"
-                onerror="this.style.opacity='0.2'">
-            </div>
-
-          </div>
-
-          <div class="proj-card-h-info">
-            <div class="proj-labels">
-              <span class="proj-tag">Web</span>
-              <span class="proj-tag">JavaScript</span>
-              <span class="proj-tag">HTML/CSS</span>
-            </div>
-            <h3>Movimenta</h3>
-            <p>App web para organizar e gerenciar tarefas diárias com criação, edição e exclusão. Foco em lógica de programação e manipulação do DOM.</p>
-            <div class="proj-links">
-              <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
+            <div class="proj-conteudo">
+              <div class="proj-topo">
+                <h3>CommitLab 3D</h3>
+                <div class="proj-badges">
+                  <span class="badge-online">Online</span>
+                  <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link-github">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <p class="proj-desc">Plataforma 3D para visualizacao e colaboracao de commits em repositorios. Interface imersiva para navegacao no historico de desenvolvimento.</p>
+              <div class="proj-tags">
+                <span>JavaScript</span>
+                <span>Three.js</span>
+                <span>WebGL</span>
+                <span>GitHub API</span>
+              </div>
             </div>
           </div>
 
         </div>
+        <!-- fim: Em producao -->
 
 
-        <!-- ==========================================
-             PROJETO 3 — Meu Controle MEI
-             Imagens: dashboard.jpeg · RELATORIOFINANCEIRO.jpeg · serviços.jpeg
-        ========================================== -->
-        <div class="proj-card-h reveal">
-
-          <div class="proj-card-h-media">
-
-            <div class="proj-galeria">
-              <img
-                class="proj-img-principal expandivel"
-                src="Fotos/ControleMEI/dashboard.jpeg"
-                alt="Meu Controle MEI dashboard"
-                data-galeria="mei"
-                data-index="0"
-                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
-              >
-              <div class="expandir-hint">⤢ expandir</div>
-              <div class="img-fallback-msg">📸 Fotos/ControleMEI/dashboard.jpeg</div>
-            </div>
-
-            <div class="proj-thumbs">
-              <img class="proj-thumb expandivel ativo"
-                src="Fotos/ControleMEI/dashboard.jpeg" alt="Dashboard"
-                data-galeria="mei" data-index="0"
-                onerror="this.style.opacity='0.2'">
-              <img class="proj-thumb expandivel"
-                src="Fotos/ControleMEI/RELATORIOFINANCEIRO.jpeg" alt="Relatório"
-                data-galeria="mei" data-index="1"
-                onerror="this.style.opacity='0.2'">
-              <img class="proj-thumb expandivel"
-                src="Fotos/ControleMEI/serviços.jpeg" alt="Serviços"
-                data-galeria="mei" data-index="2"
-                onerror="this.style.opacity='0.2'">
-            </div>
-
+        <!-- ---- CATEGORIA: Academicos PUC Minas ---- -->
+        <div class="proj-categoria reveal">
+          <div class="categoria-label">
+            <span class="categoria-dot dot-azul"></span>
+            Academicos — PUC Minas
           </div>
 
-          <div class="proj-card-h-info">
-            <div class="proj-labels">
-              <span class="proj-tag">Mobile</span>
-              <span class="proj-tag">Web</span>
-              <span class="proj-tag">React Native</span>
-              <span class="proj-tag">Expo</span>
-              <span class="proj-tag">React.js</span>
-              <span class="proj-tag">TypeScript</span>
-              <span class="proj-tag">Tailwind CSS</span>
-              <span class="proj-tag wip">Em dev</span>
+          <!-- Eco Connect -->
+          <div class="proj-item">
+            <div class="proj-icone proj-icone-verde-claro">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
             </div>
-            <h3>Meu Controle MEI</h3>
-            <p>App para microempreendedores em duas frentes: aplicativo mobile em React Native com 10 telas (Dashboard, Despesas, Notas Fiscais, Histórico, Perfil e outras) e dashboard web em React e TypeScript com Tailwind CSS, em produção. Gerenciamento de estado com Context API e persistência em PostgreSQL.</p>
-            <span class="proj-wip-label">Em desenvolvimento</span>
+            <div class="proj-conteudo">
+              <div class="proj-topo">
+                <h3>Eco Connect</h3>
+                <div class="proj-badges">
+                  <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link-github">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <p class="proj-desc">Plataforma para conectar pessoas e solucoes sustentaveis. Front-end completo com banco de dados integrado. Foco em impacto social e tecnologia acessivel.</p>
+              <div class="proj-tags">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>SQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Movimenta — FINALIZADO -->
+          <div class="proj-item">
+            <div class="proj-icone proj-icone-laranja">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div class="proj-conteudo">
+              <div class="proj-topo">
+                <h3>Movimenta</h3>
+                <div class="proj-badges">
+                  <span class="badge-finalizado">Finalizado</span>
+                  <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link-github">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <p class="proj-desc">App web para gerenciar tarefas diarias com criacao, edicao e exclusao. Front-end finalizado com foco em logica de programacao e manipulacao do DOM.</p>
+              <div class="proj-tags">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meu MEI — FINALIZADO MOBILE -->
+          <div class="proj-item">
+            <div class="proj-icone proj-icone-verde">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="proj-conteudo">
+              <div class="proj-topo">
+                <h3>Meu MEI</h3>
+                <div class="proj-badges">
+                  <span class="badge-finalizado">Finalizado</span>
+                  <span class="badge-mobile">Mobile</span>
+                  <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link-github">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <p class="proj-desc">App mobile finalizado para microempreendedores controlarem receitas, despesas e emissao de notas. Desenvolvido em React Native com Expo.</p>
+              <div class="proj-tags">
+                <span>React Native</span>
+                <span>Expo</span>
+                <span>JavaScript</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuida Mais — EM PRODUCAO (aplicacao distribuida) -->
+          <div class="proj-item">
+            <div class="proj-icone proj-icone-rosa">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="proj-conteudo">
+              <div class="proj-topo">
+                <h3>Cuida Mais</h3>
+                <div class="proj-badges">
+                  <span class="badge-online">Em producao</span>
+                  <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="proj-link-github">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <p class="proj-desc">Aplicacao distribuida de gestao de saude e historico familiar. Arquitetura de microsservicos com multiplos modulos em comunicacao. Em producao na PUC Minas.</p>
+              <div class="proj-tags">
+                <span>C#</span>
+                <span>ASP.NET Core</span>
+                <span>EF Core</span>
+                <span>MongoDB</span>
+                <span>Docker</span>
+              </div>
+            </div>
           </div>
 
         </div>
-
-
-        <!-- ==========================================
-             PROJETO 4 — Eco Connect
-             Imagem: ecoconnectlogo.png
-        ========================================== -->
-        <div class="proj-card-h reveal">
-
-          <div class="proj-card-h-media">
-
-            <div class="proj-galeria proj-galeria-logo">
-              <img
-                class="proj-img-principal expandivel"
-                src="Fotos/EcoConnect/ecoconnectlogo.png"
-                alt="Eco Connect logo"
-                data-galeria="eco"
-                data-index="0"
-                onerror="this.closest('.proj-galeria').classList.add('img-fallback')"
-              >
-              <div class="expandir-hint">⤢ expandir</div>
-              <div class="img-fallback-msg">📸 Fotos/EcoConnect/ecoconnectlogo.png</div>
-            </div>
-
-            <div class="proj-thumbs">
-              <img class="proj-thumb expandivel ativo"
-                src="Fotos/EcoConnect/ecoconnectlogo.png" alt="Eco Connect"
-                data-galeria="eco" data-index="0"
-                onerror="this.style.opacity='0.2'">
-            </div>
-
-          </div>
-
-          <div class="proj-card-h-info">
-            <div class="proj-labels">
-              <span class="proj-tag">Web</span>
-              <span class="proj-tag">JavaScript</span>
-              <span class="proj-tag wip">Em dev</span>
-            </div>
-            <h3>Eco Connect</h3>
-            <p>Plataforma de conexão voltada para sustentabilidade e impacto social. Tecnologia acessível construída com propósito.</p>
-            <span class="proj-wip-label">Em desenvolvimento</span>
-          </div>
-
-        </div>
+        <!-- fim: Academicos -->
 
       </div>
-      <!-- fim: proj-lista -->
-
-
-      <!-- Bloco LinkedIn -->
-      <div class="linkedin-projects reveal">
-
-        <div class="lp-header">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3zm7 0h4v1.85h.06c.56-1.06 1.94-2.18 3.98-2.18 4.26 0 5.04 2.8 5.04 6.44V21h-4v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44V21h-4z"/>
-          </svg>
-          <span>Seção de Projetos — LinkedIn</span>
-        </div>
-
-        <p class="lp-desc">Copie e adicione estes textos na seção "Projetos" do seu perfil LinkedIn:</p>
-
-        <div class="lp-grid">
-          <div class="lp-card">
-            <div class="lp-top"><h4>Sistema de Gestão de Condomínios</h4><span class="lp-status live">● Online</span></div>
-            <div class="lp-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Firebase</span></div>
-            <p>Sistema web completo para gerenciamento de condomínios. Funcional e hospedado no Firebase.</p>
-            <span class="lp-link">github.com/MatheusJalles</span>
-          </div>
-          <div class="lp-card">
-            <div class="lp-top"><h4>Movimenta</h4><span class="lp-status">Web App</span></div>
-            <div class="lp-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
-            <p>Aplicação web para gerenciamento de tarefas com criação, edição e exclusão. Foco em lógica e DOM.</p>
-            <span class="lp-link">github.com/MatheusJalles</span>
-          </div>
-          <div class="lp-card">
-            <div class="lp-top"><h4>Meu Controle MEI</h4><span class="lp-status wip">Em dev</span></div>
-            <div class="lp-tags"><span>React Native</span><span>Expo</span><span>JavaScript</span></div>
-            <p>App mobile para controle financeiro de microempreendedores com React Native e Expo.</p>
-            <span class="lp-link">github.com/MatheusJalles</span>
-          </div>
-        </div>
-
-      </div>
-
     </section>
 
 
-    <!-- ============================================
-         SEÇÃO 03 — STACK
-    ============================================ -->
-    <section class="section" id="stack">
+    <!-- ========================================
+         SECAO CONTATO — links de contato
+    ======================================== -->
+    <section class="secao" id="contato">
+      <div class="container">
 
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <h2>Stack</h2>
-      </div>
-
-      <div class="stack-grid reveal">
-        <div class="stack-group">
-          <h4>Front-End</h4>
-          <div class="stack-items"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>TypeScript</span><span>Tailwind CSS</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Mobile</h4>
-          <div class="stack-items"><span>React Native</span><span>Expo</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Back-End</h4>
-          <div class="stack-items"><span>Python</span><span>SQL</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Ferramentas</h4>
-          <div class="stack-items"><span>Git</span><span>GitHub</span><span>Figma</span><span>VS Code</span></div>
-        </div>
-      </div>
-
-    </section>
-
-
-    <!-- ============================================
-         SEÇÃO 04 — CONTATO
-    ============================================ -->
-    <section class="section contato-section" id="contato">
-
-      <div class="section-header">
-        <span class="section-num">04</span>
         <h2>Contato</h2>
-      </div>
+        <p class="secao-sub">Quer conversar? Estou aberto a novas oportunidades e projetos desafiadores.</p>
 
-      <div class="contato-inner reveal">
+        <div class="contato-grid reveal">
 
-        <p class="contato-text">
-          Aberto a oportunidades, freelas e colaborações.<br>
-          A melhor forma de me encontrar é pelo LinkedIn.
-        </p>
+          <div class="contato-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <span class="contato-label">Email</span>
+              <a href="mailto:contato.matheusjalles@gmail.com">contato.matheusjalles@gmail.com</a>
+            </div>
+          </div>
 
-        <a href="mailto:contato.matheusjalles@gmail.com" class="contato-email">contato.matheusjalles@gmail.com</a>
+          <div class="contato-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3zm7 0h4v1.85h.06c.56-1.06 1.94-2.18 3.98-2.18 4.26 0 5.04 2.8 5.04 6.44V21h-4v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44V21h-4z"/></svg>
+            <div>
+              <span class="contato-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener">/MatheusJalles</a>
+            </div>
+          </div>
 
-        <div class="botoes-contato">
-
-          <a href="mailto:contato.matheusjalles@gmail.com" class="botao-contato email">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01l10 6.49 10-6.5V6H2zm20 12v-9.5l-10 6.5-10-6.5V18h20z"/></svg>
-            E-mail
-          </a>
-
-          <a href="https://www.linkedin.com/in/matheus-jalles-3078881a8/" target="_blank" rel="noopener" class="botao-contato linkedin">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3zm7 0h4v1.85h.06c.56-1.06 1.94-2.18 3.98-2.18 4.26 0 5.04 2.8 5.04 6.44V21h-4v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44V21h-4z"/></svg>
-            LinkedIn
-          </a>
-
-          <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener" class="botao-contato github">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
-            GitHub
-          </a>
+          <div class="contato-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.6a12 12 0 0 0 8.2 11.5c.6.1.8-.3.8-.6v-2c-3.3.8-4-1.6-4-1.6a3.3 3.3 0 0 0-1.4-1.8c-1.1-.8.1-.8.1-.8a2.6 2.6 0 0 1 2 1.4 2.7 2.7 0 0 0 3.7 1 2.7 2.7 0 0 1 .8-1.7c-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2a4.4 4.4 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.8 5.6-5.5 6a2.9 2.9 0 0 1 .9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
+            <div>
+              <span class="contato-label">GitHub</span>
+              <a href="https://github.com/MatheusJalles" target="_blank" rel="noopener">MatheusJalles</a>
+            </div>
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
   </main>
 
+  <!-- Footer simples -->
   <footer>
-    <span>Matheus Jalles · 2026</span>
-    <span>BH · Brasil</span>
+    <div class="container footer-inner">
+      <span>Matheus Jalles · 2026</span>
+      <span>Belo Horizonte, Brasil</span>
+    </div>
   </footer>
 
   <script src="script.js"></script>
