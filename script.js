@@ -1,119 +1,149 @@
-/*
-  PORTFÓLIO — MATHEUS JALLES
-  script.js — comportamentos da página
-  ========================================
-  1. Sombra no header ao rolar
-  2. Scroll Reveal — animação de entrada
-  3. Menu mobile (hamburguer)
-  4. Link ativo na navegação
-*/
+/* Interações do portfólio */
+const header = document.getElementById('header');
+const nav = document.getElementById('main-nav');
+const menuButton = document.getElementById('menu-toggle');
 
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 12);
+}, { passive: true });
 
-/* ========================================
-   1. SOMBRA NO HEADER AO ROLAR
-   Adiciona classe .rolando ao rolar > 10px
-======================================== */
-var header = document.getElementById('header');
-
-window.addEventListener('scroll', function () {
-  if (window.scrollY > 10) {
-    header.classList.add('rolando');
-  } else {
-    header.classList.remove('rolando');
-  }
-});
-
-
-/* ========================================
-   2. SCROLL REVEAL
-   Detecta quando elementos entram na tela
-   e adiciona a classe .visivel (CSS faz o resto)
-======================================== */
-
-// Seleciona todos os elementos com a classe .reveal
-var elementosReveal = document.querySelectorAll('.reveal');
-
-// Observer: dispara quando o elemento fica 10% visível
-var observadorReveal = new IntersectionObserver(function (entradas) {
-  entradas.forEach(function (entrada) {
-    if (entrada.isIntersecting) {
-      // Adiciona .visivel para ativar a animação CSS
-      entrada.target.classList.add('visivel');
-      // Para de observar após animar (animação acontece só uma vez)
-      observadorReveal.unobserve(entrada.target);
-    }
+if (menuButton && nav) {
+  menuButton.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
   });
-}, { threshold: 0.1 });
-
-// Registra cada elemento para ser observado
-elementosReveal.forEach(function (el) {
-  observadorReveal.observe(el);
-});
-
-// Elementos já visíveis ao carregar a página aparecem imediatamente
-window.addEventListener('load', function () {
-  elementosReveal.forEach(function (el) {
-    if (el.getBoundingClientRect().top < window.innerHeight) {
-      el.classList.add('visivel');
-    }
-  });
-});
-
-
-/* ========================================
-   3. MENU MOBILE (HAMBURGUER)
-   Alterna a classe .aberto na <nav>
-   ao clicar no botão hamburguer
-======================================== */
-var btnMenu = document.getElementById('menu-toggle');
-var nav     = document.querySelector('nav');
-
-if (btnMenu && nav) {
-  btnMenu.addEventListener('click', function () {
-    // Alterna o menu aberto/fechado
-    nav.classList.toggle('aberto');
-
-    // Acessibilidade: informa o estado do botão
-    var estaAberto = nav.classList.contains('aberto');
-    btnMenu.setAttribute('aria-expanded', estaAberto);
-  });
-
-  // Fecha o menu ao clicar em qualquer link da nav
-  nav.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      nav.classList.remove('aberto');
-      btnMenu.setAttribute('aria-expanded', 'false');
-    });
-  });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  }));
 }
 
-
-/* ========================================
-   4. LINK ATIVO NA NAVEGAÇÃO
-   Destaca o link da seção que está visível
-   usando IntersectionObserver nas seções
-======================================== */
-var secoes   = document.querySelectorAll('section[id]');
-var linksNav = document.querySelectorAll('nav a');
-
-var observadorNav = new IntersectionObserver(function (entradas) {
-  entradas.forEach(function (entrada) {
-    if (entrada.isIntersecting) {
-      var idAtual = entrada.target.id;
-
-      // Remove .ativo de todos e adiciona só no link correspondente
-      linksNav.forEach(function (link) {
-        link.classList.remove('ativo');
-        if (link.getAttribute('href') === '#' + idAtual) {
-          link.classList.add('ativo');
-        }
-      });
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
   });
-}, {
-  threshold: 0.4 // ativa quando 40% da seção está visível
-});
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-secoes.forEach(function (secao) {
-  observadorNav.observe(secao);
-});
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.main-nav a');
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+    });
+  });
+}, { rootMargin: '-35% 0px -55% 0px' });
+sections.forEach(section => sectionObserver.observe(section));
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* Carrossel infinito: avança sozinho, pausa no hover e aceita arraste. */
+(() => {
+  const viewport = document.querySelector('.carousel-viewport');
+  const track = document.getElementById('carousel-track');
+  if (!viewport || !track) return;
+
+  const originals = Array.from(track.children);
+  const total = originals.length;
+  const prev = document.getElementById('project-prev');
+  const next = document.getElementById('project-next');
+  const current = document.getElementById('carousel-current');
+  const progress = document.getElementById('carousel-progress');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  track.insertBefore(originals[total - 1].cloneNode(true), originals[0]);
+  track.appendChild(originals[0].cloneNode(true));
+  let cards = Array.from(track.children);
+  let index = 1;
+  let timer = null;
+  let pointerStart = null;
+  let pointerDelta = 0;
+  let isDragging = false;
+
+  const stepSize = () => {
+    const first = cards[0];
+    const styles = getComputedStyle(track);
+    return first.getBoundingClientRect().width + parseFloat(styles.columnGap || styles.gap || 0);
+  };
+
+  function paint(animate = true) {
+    const step = stepSize();
+    const offset = viewport.clientWidth / 2 - cards[index].getBoundingClientRect().width / 2 - index * step;
+    track.style.transition = animate ? '' : 'none';
+    track.style.transform = `translate3d(${offset}px,0,0)`;
+    cards.forEach((card, i) => card.classList.toggle('active', i === index));
+    const realIndex = (index - 1 + total) % total;
+    current.textContent = String(realIndex + 1).padStart(2, '0');
+    progress.style.width = `${((realIndex + 1) / total) * 100}%`;
+  }
+
+  function move(direction) {
+    if (isDragging) return;
+    index += direction;
+    paint(true);
+  }
+  function resetLoop() {
+    if (index === 0) index = total;
+    else if (index === total + 1) index = 1;
+    paint(false);
+    requestAnimationFrame(() => { track.style.transition = ''; });
+  }
+  track.addEventListener('transitionend', resetLoop);
+  prev.addEventListener('click', () => { stop(); move(-1); start(); });
+  next.addEventListener('click', () => { stop(); move(1); start(); });
+
+  function stop() {
+    if (timer) window.clearInterval(timer);
+    timer = null;
+  }
+  function start() {
+    stop();
+    if (!reducedMotion && !document.hidden) timer = window.setInterval(() => move(1), 4800);
+  }
+
+  viewport.addEventListener('mouseenter', stop);
+  viewport.addEventListener('mouseleave', start);
+  viewport.addEventListener('focusin', stop);
+  viewport.addEventListener('focusout', start);
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+  viewport.addEventListener('pointerdown', event => {
+    if (event.target.closest('a,button')) return;
+    pointerStart = event.clientX;
+    pointerDelta = 0;
+    isDragging = true;
+    stop();
+    viewport.classList.add('dragging');
+    track.style.transition = 'none';
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport.addEventListener('pointermove', event => {
+    if (!isDragging || pointerStart === null) return;
+    pointerDelta = event.clientX - pointerStart;
+    const step = stepSize();
+    const offset = viewport.clientWidth / 2 - cards[index].getBoundingClientRect().width / 2 - index * step;
+    track.style.transform = `translate3d(${offset + pointerDelta}px,0,0)`;
+  });
+  function finishDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    viewport.classList.remove('dragging');
+    if (Math.abs(pointerDelta) > 45) index += pointerDelta < 0 ? 1 : -1;
+    pointerStart = null;
+    pointerDelta = 0;
+    paint(true);
+    start();
+  }
+  viewport.addEventListener('pointerup', finishDrag);
+  viewport.addEventListener('pointercancel', finishDrag);
+  window.addEventListener('resize', () => paint(false));
+
+  paint(false);
+  start();
+})();
