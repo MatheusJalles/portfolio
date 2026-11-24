@@ -1,0 +1,23 @@
+PORTFÓLIO — MATHEUS JALLES
+==========================
+
+Esta versão atualiza o visual do portfólio com:
+- apresentação em layout claro com gradientes azul/roxo;
+- foto real em destaque, usando Fotos/fotoperfil.png;
+- carrossel infinito de projetos com autoplay, pausa no hover e arraste;
+- cards de tecnologias, sobre, trajetória e contato;
+- menu mobile e animações de entrada;
+- suporte a prefers-reduced-motion.
+
+COMO TESTAR
+1. Extraia a pasta.
+2. Abra index.html no navegador.
+3. Para publicar no GitHub Pages, substitua os arquivos do repositório pelos desta pasta,
+   mantendo a pasta Fotos.
+
+OBSERVAÇÕES
+- O botão do currículo direciona para solicitação por e-mail porque não havia curriculo.pdf
+  no arquivo enviado.
+- Os botões dos projetos apontam para o perfil público do GitHub; os links específicos
+  dos repositórios/demos podem ser adicionados quando forem confirmados.
+- Nenhuma configuração externa foi alterada.
